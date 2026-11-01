@@ -1,0 +1,15 @@
+[package]
+name = "mod-menu"
+version = "0.3.0"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT"
+description = "Mod Menu for Horizon: a Mods button on the title screen and a Mod Menu style list of your mods"
+
+[lib]
+# This exact source is also injected as a same-crate module by horizon-mixins.
+path = "mixins/mod_menu/runtime.rs"
+
+[workspace]
+members = ["tools/audit"]
+resolver = "2"
