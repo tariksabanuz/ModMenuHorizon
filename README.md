@@ -1,1 +1,1 @@
-# Horizon-s-ModMenu
+# Check "Releases" for the mod!
