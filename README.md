@@ -35,7 +35,7 @@ Keys on the screen: type to search, Up/Down/PageUp/PageDown/Home/End pick a mod,
 The title screen and the Options screen are Horizon code with no mod hooks, so this mod uses
 horizon-mixins HEAD hooks on them (all in `horizon-mixin.toml`):
 
-* `Title::buttons`, `Title::click` and `Title::draw` add, press and draw the button (the icon row moves
+* `Title::buttons`, `Title::click` and `Title::draw_with_items` add, press and draw the button (the icon row moves
   left half a button to stay centred);
 * `Game::draw_options`, `options_mouse`, `options_drag`, `options_scroll`, `options_key` and
   `options_shortcut` hand the Options screen's drawing and input to the Mods screen while it is open;
@@ -53,7 +53,7 @@ Pinned to Horizon `6475f62f3c834b7489e1816bf47f47ea5eb2b879` and horizon-mixins 
 python3 tools/horizon.py stage --horizon ../horizon
 python3 tools/horizon.py check --horizon ../horizon
 python3 tools/horizon.py build --horizon ../horizon
-python3 tools/package.py        # target/mod_menu-0.3.2.hnmod
+python3 tools/package.py        # target/mod_menu-0.3.3.hnmod
 ```
 
 The screen's logic (layout, search, filter, wrapping, keys) and its unit tests are in

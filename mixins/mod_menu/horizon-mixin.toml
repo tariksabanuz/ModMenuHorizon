@@ -1,6 +1,6 @@
 [mod]
 id = "mod_menu"
-version = "0.3.2"
+version = "0.3.3"
 priority = 100
 
 [compatibility]
@@ -94,14 +94,16 @@ bindings = [
 id = "title-draw"
 kind = "HEAD"
 cancellable = true
-target = "horizon_client_lib::title::Title::draw"
+target = "horizon_client_lib::title::Title::draw_with_items"
 helper = "title_draw.rs"
 bindings = [
   { name = "title", ty = "&Title", value = "self" },
   { name = "atlas", ty = "&HudAtlas", value = "atlas" },
+  { name = "items", ty = "Option<&crate::item_render::ItemRenderer>", value = "items" },
   { name = "batch", ty = "&mut HudBatch", value = "&mut *batch" },
   { name = "cursor", ty = "(f32, f32)", value = "cursor" },
   { name = "hide_splash", ty = "bool", value = "hide_splash" },
+  { name = "hide_server_address", ty = "bool", value = "hide_server_address" },
 ]
 
 # The Options screen's draw and input, taken over while the Mods screen is open.

@@ -9,7 +9,7 @@
 
 pub const ID: &str = "mod_menu";
 pub const NAME: &str = "Mod Menu";
-pub const VERSION: &str = "0.3.2";
+pub const VERSION: &str = "0.3.3";
 pub const AUTHOR: &str = "tariksabanuz";
 pub const DESCRIPTION: &str = "Lists every mod you have installed, with its name and description. Open it with the Mods button next to Accessibility on the title screen.";
 

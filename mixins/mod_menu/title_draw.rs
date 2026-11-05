@@ -2,9 +2,11 @@
 fn mod_menu_title_draw(
     title: &Title,
     atlas: &HudAtlas,
+    items: Option<&crate::item_render::ItemRenderer>,
     batch: &mut HudBatch,
     cursor: (f32, f32),
     hide_splash: bool,
+    hide_server_address: bool,
 ) -> ::core::ops::ControlFlow<()> {
     use core::ops::ControlFlow;
     use crate::title::native_mod_menu_title as m;
@@ -12,7 +14,7 @@ fn mod_menu_title_draw(
     if m::DRAW.enter() {
         return ControlFlow::Continue(());
     }
-    title.draw(atlas, batch, cursor, hide_splash);
+    title.draw_with_items(atlas, items, batch, cursor, hide_splash, hide_server_address);
     m::DRAW.leave();
     if matches!(title.mode, Mode::Main) {
         let (w, h) = (batch.width.ceil(), batch.height.ceil());
