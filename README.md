@@ -46,14 +46,14 @@ for another.
 
 ## Build and test
 
-Pinned to Horizon `9d979caa48a3bb58203319b9ea044db58c38e0d8` and horizon-mixins `d9c83d7`
+Pinned to Horizon `6475f62f3c834b7489e1816bf47f47ea5eb2b879` and horizon-mixins `d9c83d7`
 (`compatibility.json`):
 
 ```sh
 python3 tools/horizon.py stage --horizon ../horizon
 python3 tools/horizon.py check --horizon ../horizon
 python3 tools/horizon.py build --horizon ../horizon
-python3 tools/package.py        # target/mod_menu-0.3.0.hnmod
+python3 tools/package.py        # target/mod_menu-0.3.1.hnmod
 ```
 
 The screen's logic (layout, search, filter, wrapping, keys) and its unit tests are in
