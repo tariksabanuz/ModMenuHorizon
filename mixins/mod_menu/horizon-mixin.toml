@@ -1,6 +1,6 @@
 [mod]
 id = "mod_menu"
-version = "0.3.1"
+version = "0.3.2"
 priority = 100
 
 [compatibility]
@@ -27,6 +27,25 @@ file = "crates/horizon-client/src/title.rs"
 name = "native_mod_menu_title"
 source = "title_runtime.rs"
 visibility = "pub"
+
+# DirectX 12 (FXC): Horizon's terrain shader made ready for FXC; the game crashed at its start there.
+[[module]]
+id = "fxc_runtime"
+file = "crates/horizon-client-render/src/lib.rs"
+name = "native_mod_menu_fxc"
+source = "fxc_runtime.rs"
+visibility = "pub"
+
+[[injection]]
+id = "fxc"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client_render::gfx::reuse::On<'_>::create_shader_module"
+helper = "fxc.rs"
+bindings = [
+  { name = "this", ty = "&On<'_>", value = "self" },
+  { name = "descriptor", ty = "&wgpu::ShaderModuleDescriptor<'_>", value = "&descriptor" },
+]
 
 [[injection]]
 id = "listed"

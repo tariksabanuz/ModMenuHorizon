@@ -53,7 +53,7 @@ Pinned to Horizon `6475f62f3c834b7489e1816bf47f47ea5eb2b879` and horizon-mixins 
 python3 tools/horizon.py stage --horizon ../horizon
 python3 tools/horizon.py check --horizon ../horizon
 python3 tools/horizon.py build --horizon ../horizon
-python3 tools/package.py        # target/mod_menu-0.3.1.hnmod
+python3 tools/package.py        # target/mod_menu-0.3.2.hnmod
 ```
 
 The screen's logic (layout, search, filter, wrapping, keys) and its unit tests are in
