@@ -46,7 +46,7 @@ for another.
 
 ## Build and test
 
-Pinned to Horizon `6475f62f3c834b7489e1816bf47f47ea5eb2b879` and horizon-mixins `d9c83d7`
+Pinned to Horizon `f319701e8c9ab657ff562250b3ba07b2d654e3bc` and horizon-mixins `d9c83d7`
 (`compatibility.json`):
 
 ```sh
