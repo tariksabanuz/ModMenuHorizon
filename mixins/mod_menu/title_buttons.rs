@@ -26,6 +26,7 @@ fn mod_menu_title_buttons(title: &Title, w: f32, h: f32) -> ::core::ops::Control
                 id: m::BUTTON_ID,
                 icon: None,
                 trailing: None,
+                action: None,
             });
         }
     }

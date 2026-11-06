@@ -1,10 +1,10 @@
 [mod]
 id = "mod_menu"
-version = "0.3.0"
+version = "0.3.3"
 priority = 100
 
 [compatibility]
-horizon_revision = "9d979caa48a3bb58203319b9ea044db58c38e0d8"
+horizon_revision = "f319701e8c9ab657ff562250b3ba07b2d654e3bc"
 
 # The Mods screen's logic (layout, search, filter, wrapping): no game types, so it has its own tests.
 [[module]]
@@ -28,6 +28,25 @@ name = "native_mod_menu_title"
 source = "title_runtime.rs"
 visibility = "pub"
 
+# DirectX 12 (FXC): Horizon's terrain shader made ready for FXC; the game crashed at its start there.
+[[module]]
+id = "fxc_runtime"
+file = "crates/horizon-client-render/src/lib.rs"
+name = "native_mod_menu_fxc"
+source = "fxc_runtime.rs"
+visibility = "pub"
+
+[[injection]]
+id = "fxc"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client_render::gfx::reuse::On<'_>::create_shader_module"
+helper = "fxc.rs"
+bindings = [
+  { name = "this", ty = "&On<'_>", value = "self" },
+  { name = "descriptor", ty = "&wgpu::ShaderModuleDescriptor<'_>", value = "&descriptor" },
+]
+
 [[injection]]
 id = "listed"
 hook = "mods"
@@ -50,7 +69,7 @@ bindings = [{ name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *s
 id = "title-buttons"
 kind = "HEAD"
 cancellable = true
-target = "horizon_client::title::Title::buttons"
+target = "horizon_client_lib::title::Title::buttons"
 helper = "title_buttons.rs"
 bindings = [
   { name = "title", ty = "&Title", value = "self" },
@@ -62,7 +81,7 @@ bindings = [
 id = "title-click"
 kind = "HEAD"
 cancellable = true
-target = "horizon_client::title::Title::click"
+target = "horizon_client_lib::title::Title::click"
 helper = "title_click.rs"
 bindings = [
   { name = "title", ty = "&mut Title", value = "&mut *self" },
@@ -75,14 +94,16 @@ bindings = [
 id = "title-draw"
 kind = "HEAD"
 cancellable = true
-target = "horizon_client::title::Title::draw"
+target = "horizon_client_lib::title::Title::draw_with_items"
 helper = "title_draw.rs"
 bindings = [
   { name = "title", ty = "&Title", value = "self" },
   { name = "atlas", ty = "&HudAtlas", value = "atlas" },
+  { name = "items", ty = "Option<&crate::item_render::ItemRenderer>", value = "items" },
   { name = "batch", ty = "&mut HudBatch", value = "&mut *batch" },
   { name = "cursor", ty = "(f32, f32)", value = "cursor" },
   { name = "hide_splash", ty = "bool", value = "hide_splash" },
+  { name = "hide_server_address", ty = "bool", value = "hide_server_address" },
 ]
 
 # The Options screen's draw and input, taken over while the Mods screen is open.
