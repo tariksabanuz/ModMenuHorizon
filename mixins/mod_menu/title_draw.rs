@@ -21,11 +21,11 @@ fn mod_menu_title_draw(
         if let Some(b) = title.buttons(w, h).into_iter().find(|b| b.id == m::BUTTON_ID) {
             let hover = cursor.0 >= b.x && cursor.0 < b.x + b.w && cursor.1 >= b.y && cursor.1 < b.y + 20.0;
             let bar = if hover { rgba(255, 255, 255, 255) } else { rgba(224, 224, 224, 255) };
-            // Center the icon horizontally within the button
-            let icon_width = 12.0;
-            let icon_offset_x = (b.w - icon_width) / 2.0;
+            // Center the icon: the bars are 12px wide, button is 20px, so we want 4px offset.
+            // But empirically it needs more — try 6px to shift it right.
+            let icon_offset = 6.0;
             for (_, dy, bw, bh) in m::BARS {
-                batch.fill(atlas, b.x + icon_offset_x, b.y + dy, bw, bh, bar);
+                batch.fill(atlas, b.x + icon_offset, b.y + dy, bw, bh, bar);
             }
             if hover {
                 let lines = atlas.font.split(&Text::literal("Mods"), 170.0);
