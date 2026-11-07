@@ -9,7 +9,10 @@ Horizon revision. Based on levzzz5154's packager for Veinminer.
 import hashlib
 import json
 from pathlib import Path
-import tomllib
+try:
+    import tomllib
+except ModuleNotFoundError:
+    import tomli as tomllib
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
