@@ -50,8 +50,10 @@ impl Guard {
 pub static BUTTONS: Guard = Guard::new();
 pub static DRAW: Guard = Guard::new();
 
-/// The id of the Mods button among the title screen's buttons (0 to 7 are taken).
-pub const BUTTON_ID: u8 = 8;
+/// The id of the Mods button among the title screen's buttons. Horizon's own buttons use 1 to 15,
+/// 30 to 46, 70, 71 and 90 to 95 (8 is Minecraft Realms), so this one sits well clear of them:
+/// with a shared id the icon was drawn on the Realms button and not on the Mods button.
+pub const BUTTON_ID: u8 = 200;
 /// How far the icon row moves left to stay centred with a fourth button in it.
 pub const ROW_SHIFT: f32 = 12.0;
 
@@ -115,6 +117,12 @@ mod tests {
         assert!(is_open());
         close();
         assert!(!is_open());
+    }
+
+    #[test]
+    fn the_button_id_is_not_one_of_horizons() {
+        // 8 is Minecraft Realms; none of Horizon's buttons use 96 or more.
+        assert!(BUTTON_ID > 95);
     }
 
     #[test]
