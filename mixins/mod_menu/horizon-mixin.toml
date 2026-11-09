@@ -1,10 +1,10 @@
 [mod]
 id = "mod_menu"
-version = "0.3.4"
+version = "0.3.5"
 priority = 100
 
 [compatibility]
-horizon_revision = "66f3981f522b24c250b21523a70080965b940424"
+horizon_revision = "fdc87aecdbd116bf1e08adcd062fcbaea8c2e2ca"
 
 # The Mods screen's logic (layout, search, filter, wrapping): no game types, so it has its own tests.
 [[module]]
